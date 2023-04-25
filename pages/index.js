@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Footer from "../components/footer"
+import Image from "next/image"
 import Link from "next/link" 
 
 const LandingPage = () => {
@@ -7,7 +7,9 @@ const LandingPage = () => {
     <div>
       <Head><title>名刺がわりの小説10選</title></Head>
       <header>
-          <div><Link href="/"><img src="/header.svg" alt="header-img"/></Link></div>
+          <div><Link href="/">
+            <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
+          </Link></div>
           <nav>
               <ul>
                   <li><Link href="/user/register">新規登録</Link></li>
@@ -16,7 +18,6 @@ const LandingPage = () => {
           </nav>
       </header>
       <h1>ランディングページ</h1>
-      <Footer/>
     </div>
   )
 }
