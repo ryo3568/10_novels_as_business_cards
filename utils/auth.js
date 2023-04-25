@@ -7,8 +7,7 @@ const auth = (handler) => {
         if(req.method === "GET"){
             return handler(req, res)
         }
-        // const token = await req.headers.authorization.split(" ")[1]
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlbnBlbkBleGFtcGxlLmNvbSIsImlhdCI6MTY4MjM0NjEzNCwiZXhwIjoxNjgyNDI4OTM0fQ.1835XFgg-Vc9COFo_aSMkG_Q8e33zibAy0DQHDliN3U"
+        const token = await req.headers.authorization.split(" ")[1]
         if(!token){
             return res.status(401).json({message: "トークンがありません"})
         }
