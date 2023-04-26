@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
+import { useRouter } from "next/router"
 
 const UserRegister = () => {
     const [name, setName] = useState("")
@@ -10,10 +11,12 @@ const UserRegister = () => {
     const [instagram, setInstagram] = useState("")
     const [github, setGithub] = useState("")
 
+    const router = useRouter()
+
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const response = await fetch("http://localhost:3000/api/user/update", {
+            await fetch("http://localhost:3000/api/user/update", {
                 method: "POST",
                 headers: {
                     "Accept": "application/josn",
@@ -28,8 +31,7 @@ const UserRegister = () => {
                     github: github
                 })
             })
-            const jsonData = await response.json()
-            alert(jsonData.message)
+            router.push("/item/edit")
         }catch(err){
             alert("ユーザー情報更新失敗")
         }

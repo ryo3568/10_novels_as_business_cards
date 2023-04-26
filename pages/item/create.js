@@ -1,17 +1,19 @@
 import { useState } from "react"
 import useAuth from "../../utils/useAuth"
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 const CreateItem = () => {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [image, setImage] = useState("")
-    const [message, setMessage] = useState("")
+
+    const router = useRouter()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const response = await fetch("http://localhost:3000/api/item/create", {
+            await fetch("http://localhost:3000/api/item/create", {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -22,11 +24,9 @@ const CreateItem = () => {
                     title: title,
                     author: author,
                     image: image,
-                    message: message
                 })
             })
-            const jsonData = await response.json() 
-            alert(jsonData.message)
+            router.push("/item/edit")
         }catch(err){
             alert("アイテム作成失敗")
         }
@@ -43,7 +43,6 @@ const CreateItem = () => {
                     <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="タイトル" required />
                     <input value={author} onChange={(e) => setAuthor(e.target.value)} type="text" name="author" placeholder="著者" required />
                     <input value={image} onChange={(e) => setImage(e.target.value)} type="text" name="image" placeholder="画像" required />
-                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} name="message" rows={15} placeholder="メッセージ" required></textarea>
                     <button>追加</button>
                 </form>
             </div>
