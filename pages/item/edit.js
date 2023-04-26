@@ -48,7 +48,7 @@ const EditItems = (props) => {
                 </div>
             )}
             <h3>名刺の画面をプレビューで確認しよう</h3>
-            <Link href="/">名刺を確認</Link>
+            <Link href="/item/readall">名刺を確認</Link>
         </div>
     )
 }
