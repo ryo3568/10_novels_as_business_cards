@@ -2,15 +2,18 @@ import { useState } from "react"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
+import { useRouter } from "next/router"
 
 const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    
+    const router = useRouter()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const response = await fetch("https://10-novels-as-business-cards.vercel.app/api/user/register", {
+            const response = await fetch("http://localhost:3000/api/user/register", {
                 method: "POST",
                 headers: {
                     "Accept": "application/josn",
@@ -22,7 +25,8 @@ const Register = () => {
                 })
             })
             const jsonData = await response.json()
-            alert(jsonData.message)
+            localStorage.setItem("token", jsonData.token)
+            router.push("/user/update")
         }catch(err){
             alert("ユーザー登録失敗")
         }
