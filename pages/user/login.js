@@ -2,10 +2,13 @@ import {useState} from "react"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
+import { useRouter } from "next/router"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const router = useRouter()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -23,7 +26,7 @@ const Login = () => {
             })
             const jsonData = await response.json()
             localStorage.setItem("token", jsonData.token)
-            alert(jsonData.message)
+            router.push("/item/edit")
         }catch(err){
             alert("ログイン失敗")
         }

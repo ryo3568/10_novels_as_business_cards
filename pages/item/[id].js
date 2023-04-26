@@ -1,8 +1,36 @@
 import Image from "next/image"
-import Link from "next/link"
 import Head from "next/head"
+import { useState } from "react"
+import { useRouter } from "next/router"
 
 const ReadSingleItem = (props) => {
+    const [comment, setComment] = useState(props.singleItem.comment)
+
+    const router = useRouter()
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        try{
+            const response = await fetch(`http://localhost:3000/api/item/update/${props.singleItem._id}`, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    title: props.singleItem.title,
+                    author: props.singleItem.author,
+                    image: props.singleItem.image,
+                    comment: comment
+                })
+            })
+            router.push("/item/edit")
+        }catch(err){
+            alert("コメント編集失敗")
+        }
+    }
+
     return (
         <div>
             <Head><title>{props.singleItem.title}</title></Head>
@@ -10,14 +38,14 @@ const ReadSingleItem = (props) => {
                 <Image src={props.singleItem.image} width={750} height={500} alt="item-image"/>
             </div>
             <div>
-                <h1>{props.singleItem.title}</h1>
-                <h1>{props.singleItem.author}</h1>
-                <h1>{props.singleItem.message}</h1>
-                <div>
-                    <Link href={`/item/update/${props.singleItem._id}`}>アイテム編集</Link>
-                    <Link href={`/item/delete/${props.singleItem._id}`}>アイテム削除</Link>
-                </div>
+                <h1>タイトル：{props.singleItem.title}</h1>
+                <h1>著者：{props.singleItem.author}</h1>
+                <h1>コメント：{props.singleItem.message}</h1>
             </div>
+            <form onSubmit={handleSubmit}>
+                <textarea value={comment} onChange={(e) => setComment(e.target.value)} name="comment" rows={10} placeholder="コメント"></textarea>
+                <button>確定</button>
+            </form>
         </div>
     )
 }
