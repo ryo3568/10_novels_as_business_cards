@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link" 
 import { useRouter } from "next/router"
 
 const UserRegister = () => {
@@ -40,11 +38,6 @@ const UserRegister = () => {
     return (
         <div>
             <Head><title>名刺の基本情報</title></Head>
-            <header>
-                <div><Link href="/">
-                    <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
-                </Link></div>
-            </header>
             <h1>名刺の基本情報</h1>
             <form onSubmit={handleSubmit}>
                 <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="名前"/>
