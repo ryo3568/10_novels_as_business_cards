@@ -1,15 +1,20 @@
 import Link from "next/link" 
 import Image from "next/image"
 import Head from "next/head"
+import Header from "../../components/header"
+import QRCode from "qrcode"
+import { useState } from "react"
 
 const ReadAllItems = (props) => {
+    const [src, setSrc] = useState(QRCode.toDataURL("http://localhost:3000/item/readall"))
+
     return (
         <div>
             <Head><title>名刺がわりの小説10選</title></Head>
-            <h1>こんにちは</h1>
+            <Header/>
             {props.allItems.map(item => 
                 <Link href={`/item/${item._id}`} key={item._id}>
-                    <Image src={item.image} width="750" height="500" alt="item-image" />
+                    <Image src={item.image} width="200" height="1000" alt="item-image" />
                     <div>
                         <h2>{item.title}</h2>
                         <h3>{item.author}</h3>
@@ -17,6 +22,11 @@ const ReadAllItems = (props) => {
                     </div>
                 </Link>
             )}
+            <Link href="/item/edit">編集に戻る</Link>
+            <br/>
+            {/* <img src={src} />
+            <button onClick={generate}>Generate</button> */}
+            <a href={src} download="hoge">QRコードのダウンロード</a>
         </div>
     )
 }

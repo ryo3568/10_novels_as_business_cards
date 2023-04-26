@@ -16,7 +16,6 @@ const useAuth = () => {
             router.push("/user/login")
         }
 
-
         try{
             const decoded = jwt.verify(token, secret_key)
             setLoginUser(decoded.email)
