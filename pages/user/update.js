@@ -46,13 +46,13 @@ const UserRegister = () => {
                 </Link></div>
             </header>
             <h1>名刺の基本情報</h1>
-            <form onSubmit={handleSubmit}>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="名前"/>
-                <input value={affiliation} onChange={(e) => setAffiliation(e.target.value)} type="text" name="affiliation" placeholder="所属"/>
-                <input value={twitter} onChange={(e) => setTwitter(e.target.value)} type="text" name="twitter" placeholder="Twitter"/>
-                <input value={instagram} onChange={(e) => setInstagram(e.target.value)} type="text" name="instagrame" placeholder="Instagram"/>
-                <input value={github} onChange={(e) => setGithub(e.target.value)} type="text" name="github" placeholder="GitHub"/>
-                <button>登録</button>
+            <form className="form-update" onSubmit={handleSubmit}>
+                <label>名前<input className="upin name" value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="やな"/></label>
+                <label>所属<input className="upin affiliation" value={affiliation} onChange={(e) => setAffiliation(e.target.value)} type="text" name="affiliation" placeholder="てんぺん舎"/></label>
+                <label>Twitter<input className="upin twitter" value={twitter} onChange={(e) => setTwitter(e.target.value)} type="text" name="twitter" placeholder="@tenpen"/></label>
+                <label>Instagram<input className="upin insta" value={instagram} onChange={(e) => setInstagram(e.target.value)} type="text" name="instagrame" placeholder="@tenpen"/></label>
+                <label>GitHub<input className="upin git" value={github} onChange={(e) => setGithub(e.target.value)} type="text" name="github" placeholder="@tenpen"/></label>
+                <button className="btn-update">登録</button>
             </form>
         </div>
     )
