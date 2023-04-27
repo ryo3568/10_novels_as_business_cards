@@ -1,12 +1,18 @@
 import Image from "next/image"
 import Head from "next/head"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 const ReadSingleItem = (props) => {
     const [comment, setComment] = useState(props.singleItem.comment)
+    const [uid, setUid] = useState()
 
     const router = useRouter()
+
+    useEffect(() => {
+        const userId = localStorage.getItem("uid")
+        setUid(userId)
+    })
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -25,7 +31,7 @@ const ReadSingleItem = (props) => {
                     comment: comment
                 })
             })
-            router.push("/item/edit")
+            router.push(`/item/edit/${uid}`)
         }catch(err){
             alert("コメント編集失敗")
         }

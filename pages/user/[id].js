@@ -21,7 +21,7 @@ const ReadAllItems = (props) => {
                 width: 250,
                 height: 250,
                 type: "svg",
-                data: "https://google.com",
+                data: `http://localhost:3000/user/${uid}`,
                 image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'

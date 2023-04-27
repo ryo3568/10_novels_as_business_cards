@@ -49,7 +49,7 @@ const EditItems = (props) => {
                         <h2>{item.title}</h2>
                         <h3>{item.author}</h3>
                         <h4>{item.comment}</h4>
-                        <Link href="/">コメントを追加</Link>
+                        <Link href={`/item/${item._id}`}>コメントを追加</Link>
                         <br/>
                         <button onClick={(e) => handleClick(e, item._id)}>削除</button>
                     </div>
