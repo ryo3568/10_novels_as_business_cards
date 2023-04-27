@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
@@ -7,8 +7,14 @@ import { useRouter } from "next/router"
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [uid, setUid] = useState()
 
     const router = useRouter()
+
+    useEffect(() => {
+        const userId = localStorage.getItem("uid")
+        setUid(userId)
+    })
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -26,7 +32,8 @@ const Login = () => {
             })
             const jsonData = await response.json()
             localStorage.setItem("token", jsonData.token)
-            router.push("/item/edit")
+            localStorage.setItem("uid", jsonData.uid)
+            router.push(`/item/edit/${uid}`)
         }catch(err){
             alert("ログイン失敗")
         }

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import Link from "next/link"
+import Image from "next/image"
 
 const UserRegister = () => {
     const [name, setName] = useState("")
@@ -29,7 +31,7 @@ const UserRegister = () => {
                     github: github
                 })
             })
-            router.push("/item/edit")
+            router.push(`/item/edit/${localStorage.getItem("uid")}`)
         }catch(err){
             alert("ユーザー情報更新失敗")
         }
@@ -38,6 +40,11 @@ const UserRegister = () => {
     return (
         <div>
             <Head><title>名刺の基本情報</title></Head>
+            <header>
+                <div><Link href="/">
+                    <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
+                </Link></div>
+            </header>
             <h1>名刺の基本情報</h1>
             <form onSubmit={handleSubmit}>
                 <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="名前"/>
@@ -54,7 +61,6 @@ const UserRegister = () => {
 export default UserRegister
 
 export const getServerSideProps = async(context) => {
-    console.log(context)
     const response = await fetch(`http://localhost:3000/api/item/${context.query.id}`)
     const singleItem = await response.json()
 
