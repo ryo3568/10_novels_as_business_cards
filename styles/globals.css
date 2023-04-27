@@ -2,6 +2,12 @@
 /* @import "~tailwindcss/components"; */
 /* @import "~tailwindcss/utilities"; */
 
+
+
+body{
+    font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
+}
+
 /* ヘッダー */
 
 header li{
@@ -13,14 +19,14 @@ header li{
 /* フッター */
 
 /* ランディングページ */
-h3 {
+ .landing-step h3 {
     position: relative;
     overflow: hidden;
     padding: 1.5rem 2rem 1.5rem 120px;
     border-top: 3px solid #198008;
   }
   
-  h3:before {
+  .landing-step h3:before {
     position: absolute;
     top: -150%;
     left: -100px;
@@ -32,7 +38,7 @@ h3 {
     background: #198008;
   }
   
-  h3 span {
+  .landing-step h3 span {
     font-size: 28px;
     font-size: 2rem;
     position: absolute;
@@ -43,4 +49,56 @@ h3 {
     padding-top: 3px;
     padding-left: 16px;
     color: #fff;
+  }
+
+  /* ログイン新規登録共通*/
+  
+ .mail{
+    background-color:#D9D9D9;
+    border:none;
+    padding:10px;
+    margin:10px auto;
+    display:block;
+    width:300px;
+ }
+
+ .pass{
+    background-color:#D9D9D9;
+    border:none;
+    padding:10px;
+    margin:10px auto;
+    display:block;
+    width:300px;
+ }
+
+  /* ログインページ */
+ .form-login{
+    text-aligin:center;
+ }
+
+ .btn-login {
+    background-color:#5FC7D6;
+    border:none;
+    width:200px;
+    height:40px;
+    font-size:20px;
+    font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
+    border-radius:10px;
+    margin:60px;
+  }
+
+  /* 新規登録ページ */
+ .form-register{
+    text-aligin:center;
+ }
+
+ .btn-register {
+    background-color:#5FC7D6;
+    border:none;
+    width:200px;
+    height:40px;
+    font-size:20px;
+    font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
+    border-radius:10px;
+    margin:60px;
   }

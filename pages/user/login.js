@@ -40,12 +40,15 @@ const Login = () => {
                     <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
                 </Link></div>
             </header>
+            
             <h1>ログイン</h1>
-            <form onSubmit={handleSubmit}>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
-                <button>ログイン</button>
+            <form className="form-login" onSubmit={handleSubmit}>
+                <input className="mail" value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
+                <input className="pass" value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
+                <button className="btn-login">ログイン</button>
             </form>
+        
+
         </div>
     )
 }
