@@ -41,12 +41,14 @@ const Register = () => {
                     <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
                 </Link></div>
             </header>
+            <body>
             <h1>ユーザー登録</h1>
-            <form onSubmit={handleSubmit}>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
-                <button>新規登録</button>
+            <form className="form-register" onSubmit={handleSubmit}>
+                <input className="mail" value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
+                <input className="pass" value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
+                <button className="btn-register">新規登録</button>
             </form>
+            </body>
         </div>
     )
 }
