@@ -3,10 +3,16 @@ import Image from "next/image"
 import Head from "next/head"
 import Header from "../../components/header"
 import QRCode from "qrcode"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const ReadAllItems = (props) => {
     const [src, setSrc] = useState(QRCode.toDataURL("http://localhost:3000/item/readall"))
+    const [uid, setUid] = useState() 
+
+    useEffect(() => {
+        const userId = localStorage.getItem("uid")
+        setUid(userId)
+    })
 
     return (
         <div>
@@ -22,7 +28,7 @@ const ReadAllItems = (props) => {
                     </div>
                 </Link>
             )}
-            <Link href="/item/edit">編集に戻る</Link>
+            <Link href={`/item/edit/${uid}`}>編集に戻る</Link>
             <br/>
             {/* <img src={src} />
             <button onClick={generate}>Generate</button> */}
@@ -33,8 +39,8 @@ const ReadAllItems = (props) => {
 
 export default ReadAllItems
 
-export const getServerSideProps = async() => {
-    const response = await fetch("http://localhost:3000/api/item/readall")
+export const getServerSideProps = async(context) => {
+    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems

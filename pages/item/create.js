@@ -2,15 +2,20 @@ import { useState, useEffect } from "react"
 import useAuth from "../../utils/useAuth"
 import { useRouter } from "next/router"
 
-const CreateItem = (props) => {
+const CreateItem = () => {
     const router = useRouter()
 
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
-    const [image, setImage] = useState("")
+    const [uid, setUid] = useState()
 
     const [book, setBook] = useState()
     const [showResult, setShowResult] = useState(false)
+
+    useEffect(() => {
+        const userId = localStorage.getItem("uid")
+        setUid(userId)
+    })
 
     const handleSearch = async(e) => {
         e.preventDefault()
@@ -38,7 +43,7 @@ const CreateItem = (props) => {
     const handleSubmit = async(e, item) => {
         e.preventDefault()
         try{
-            const response = await fetch("http://localhost:3000/api/item/create", {
+            await fetch("http://localhost:3000/api/item/create", {
                 method: "POST", 
                 headers: {
                     "Accept": "application/json",
@@ -52,15 +57,11 @@ const CreateItem = (props) => {
                     comment: "",
                 })
             })
-            router.push("/item/edit")
+            router.push(`/item/edit/${uid}`)
         }catch(err){
             alert("アイテム作成失敗")
         }
     }
-
-    useEffect(() => {
-        document.title = "登録ページ"
-    })
 
     const showResults = () => {
         if(book){

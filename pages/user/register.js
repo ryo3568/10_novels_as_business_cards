@@ -26,6 +26,7 @@ const Register = () => {
             })
             const jsonData = await response.json()
             localStorage.setItem("token", jsonData.token)
+            localStorage.setItem("uid", jsonData.uid)
             router.push("/user/update")
         }catch(err){
             alert("ユーザー登録失敗")

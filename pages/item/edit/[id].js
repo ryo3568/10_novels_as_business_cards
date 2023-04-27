@@ -2,11 +2,19 @@ import Link from "next/link"
 import Image from "next/image"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import Header from "../../components/header"
+import { useState, useEffect } from "react"
+import Header from "../../../components/header"
 
 const EditItems = (props) => {
+    const [allItems, setAllItems] = useState()
+    const [uid, setUid] = useState()
 
     const router = useRouter()
+
+    useEffect(() => {
+        const userId = localStorage.getItem("uid")
+        setUid(userId)
+    })
 
     const handleClick = async(e, id) => {
         e.preventDefault()
@@ -48,15 +56,15 @@ const EditItems = (props) => {
                 </div>
             )}
             <h3>名刺の画面をプレビューで確認しよう</h3>
-            <Link href="/item/readall">名刺を確認</Link>
+            <Link href={`/user/${uid}`}>名刺を確認</Link>
         </div>
     )
 }
 
 export default EditItems
 
-export const getServerSideProps = async() => {
-    const response = await fetch("http://localhost:3000/api/item/readall")
+export const getServerSideProps = async(context) => {
+    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems
