@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import useAuth from "../../utils/useAuth"
 import { useRouter } from "next/router"
+import Header from "../../components/header"
 
 const CreateItem = () => {
     const router = useRouter()
@@ -89,6 +90,7 @@ const CreateItem = () => {
     if(loginUser){
         return (
             <div>
+                <Header/>
                 <h1>本の検索</h1>
                 <form onSubmit={handleSearch}>
                     <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル"  />
