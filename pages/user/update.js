@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Head from "next/head"
+import { useRouter } from "next/router"
+import Link from "next/link"
 import Image from "next/image"
-import Link from "next/link" 
 
 const UserRegister = () => {
     const [name, setName] = useState("")
@@ -10,10 +11,12 @@ const UserRegister = () => {
     const [instagram, setInstagram] = useState("")
     const [github, setGithub] = useState("")
 
+    const router = useRouter()
+
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const response = await fetch("http://localhost:3000/api/user/update", {
+            await fetch("https://10-novels-as-business-cards.vercel.app/api/user/update", {
                 method: "POST",
                 headers: {
                     "Accept": "application/josn",
@@ -28,8 +31,7 @@ const UserRegister = () => {
                     github: github
                 })
             })
-            const jsonData = await response.json()
-            alert(jsonData.message)
+            router.push(`/item/edit/${localStorage.getItem("uid")}`)
         }catch(err){
             alert("ユーザー情報更新失敗")
         }
@@ -44,13 +46,13 @@ const UserRegister = () => {
                 </Link></div>
             </header>
             <h1>名刺の基本情報</h1>
-            <form onSubmit={handleSubmit}>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="名前"/>
-                <input value={affiliation} onChange={(e) => setAffiliation(e.target.value)} type="text" name="affiliation" placeholder="所属"/>
-                <input value={twitter} onChange={(e) => setTwitter(e.target.value)} type="text" name="twitter" placeholder="Twitter"/>
-                <input value={instagram} onChange={(e) => setInstagram(e.target.value)} type="text" name="instagrame" placeholder="Instagram"/>
-                <input value={github} onChange={(e) => setGithub(e.target.value)} type="text" name="github" placeholder="GitHub"/>
-                <button>登録</button>
+            <form className="form-update" onSubmit={handleSubmit}>
+                <label>名前<input className="upin name" value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="やな"/></label>
+                <label>所属<input className="upin affiliation" value={affiliation} onChange={(e) => setAffiliation(e.target.value)} type="text" name="affiliation" placeholder="てんぺん舎"/></label>
+                <label>Twitter<input className="upin twitter" value={twitter} onChange={(e) => setTwitter(e.target.value)} type="text" name="twitter" placeholder="@tenpen"/></label>
+                <label>Instagram<input className="upin insta" value={instagram} onChange={(e) => setInstagram(e.target.value)} type="text" name="instagrame" placeholder="@tenpen"/></label>
+                <label>GitHub<input className="upin git" value={github} onChange={(e) => setGithub(e.target.value)} type="text" name="github" placeholder="@tenpen"/></label>
+                <button className="btn-update">登録</button>
             </form>
         </div>
     )
@@ -59,8 +61,7 @@ const UserRegister = () => {
 export default UserRegister
 
 export const getServerSideProps = async(context) => {
-    console.log(context)
-    const response = await fetch(`http://localhost:3000/api/item/${context.query.id}`)
+    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/${context.query.id}`)
     const singleItem = await response.json()
 
     return {
