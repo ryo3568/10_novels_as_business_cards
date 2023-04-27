@@ -7,7 +7,7 @@ const LandingPage = () => {
     <div>
       <Head><title>名刺がわりの小説10選</title></Head>
       <header>
-          <div><Link href="/">
+          <div className="header-logo"><Link href="/">
             <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
           </Link></div>
           <nav>
@@ -17,14 +17,16 @@ const LandingPage = () => {
               </ul>
           </nav>
       </header>
+
       <h1>ランディングページ</h1>
       {/* 以下はTailWindCSSの適用例です。消してもかまいません */}
-      <Image src="/img1.jpg" width="482" height="150"/>
-      <h3><span>STEP1</span>アカウントの作成</h3>
-      <h3><span>STEP2</span>名刺の基本情報登録</h3>
-      <h3><span>STEP3</span>名刺がわりの小説10選登録</h3>
-      <h3><span>STEP4</span>コメントを追加</h3>
-      <h3><span>STEP5</span>QRコードのダウンロード</h3>
+
+      <Image src="/img1.jpg" width="1000" height="500" alt="landing-photo"/>
+      <h3><span>01</span>アカウントを作成しよう</h3>
+      <h3><span>02</span>名刺の基本情報を入力しよう</h3>
+      <h3><span>03</span>名刺がわりにしたい本を10冊登録しよう</h3>
+      <h3><span>04</span>本についてのコメントを登録しよう</h3>
+      <h3><span>05</span>QRコードをダウンロードしよう</h3>
     </div>
   )
 }
