@@ -63,7 +63,6 @@ const ReadAllItems = (props) => {
                     </div>
                 </Link>
             )}
-            {uid === }
             <Link href={`/item/edit/${uid}`}>編集に戻る</Link>
             <br/>
             <canvas id="qrCode"></canvas>
