@@ -1,7 +1,7 @@
 import Link from "next/link" 
 import Image from "next/image"
 import Head from "next/head"
-import Header from "../../../components/header"
+import Header from "../../../components/header_login"
 import { useEffect, useState } from "react"
 
 const ReadAllItems = (props) => {

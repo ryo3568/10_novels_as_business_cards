@@ -2,6 +2,7 @@ import Image from "next/image"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Header from "../../components/header_login"
 
 const ReadSingleItem = (props) => {
     const [comment, setComment] = useState(props.singleItem.comment)
@@ -40,6 +41,7 @@ const ReadSingleItem = (props) => {
     return (
         <div>
             <Head><title>{props.singleItem.title}</title></Head>
+            <Header />
             <div>
                 <Image src={props.singleItem.image} width={750} height={500} alt="item-image"/>
             </div>

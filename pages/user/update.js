@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import Image from "next/image"
+import Header from "../../components/header_login"
 
 const UserRegister = () => {
     const [name, setName] = useState("")
@@ -40,11 +41,7 @@ const UserRegister = () => {
     return (
         <div>
             <Head><title>名刺の基本情報</title></Head>
-            <header>
-                <div><Link href="/">
-                    <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
-                </Link></div>
-            </header>
+            <Header />
             <h1>名刺の基本情報</h1>
             <form className="form-update" onSubmit={handleSubmit}>
                 <label>名前<input className="upin name" value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="やな"/></label>
