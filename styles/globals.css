@@ -2,8 +2,6 @@
 /* @import "~tailwindcss/components"; */
 /* @import "~tailwindcss/utilities"; */
 
-
-
 body{
     font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
 }
@@ -246,10 +244,14 @@ header li{
 
 
    /* 本の検索画面 */
-
-
-  /* コメントを追加画面 */
-
+  
+/* コメントを追加画面 */
+.card {
+  flex-direction: row;
+}
+/* .card img {
+  width: 30%;
+} */
 
   /* 名刺プレビュー画面 */
 
