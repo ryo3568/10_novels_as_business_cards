@@ -2,7 +2,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import useAuth from "../../../utils/useAuth"
 import Modal from "react-modal"
 
 const EditItems = (props) => {
@@ -11,6 +10,7 @@ const EditItems = (props) => {
     const [modalreadBookIsOpen, setreadBookIsOpen] = useState(false)
     const [editBook, setEditBook] = useState()
     const [comment, setComment] = useState()
+    const [pageNum, setpageNum] = useState(0)
 
     const router = useRouter()
 
@@ -52,6 +52,7 @@ const EditItems = (props) => {
 
     const handleSearch = async(e) => {
         e.preventDefault()
+        setpageNum(0)
         try{
             let flag = false
             let query = ""
@@ -64,7 +65,7 @@ const EditItems = (props) => {
                 else flag = true
                 query += `inauthor:${author}`
             }
-            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&startIndex=${pageNum}`)
             const jsonData = await response.json()
             setBook(jsonData)
             setShowResult(true)
@@ -147,14 +148,41 @@ const EditItems = (props) => {
         setComment(item.comment)
     }
 
+    const showNexPage = async() => {
+        setpageNum(pageNum + 10)
+        try{
+            let flag = false
+            let query = ""
+            if(title!==""){
+                query += `intitle:${title}`
+                flag = true
+            }
+            if(author!==""){
+                if(flag) query += "+"
+                else flag = true
+                query += `inauthor:${author}`
+            }
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&startIndex=${pageNum}`)
+            const jsonData = await response.json()
+            setBook(jsonData)
+        }catch(err){
+            alert("アイテム検索失敗")
+        }
+    }
+
+    const searchClose = () => {
+        setcreateBookIsOpen(false)
+        setShowResult(false)
+    }
+
     return (
         <div className="edit-id">
             <h1 >本たちの登録</h1>
             <h3 className="h3-editid">自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
             {/* <Link className="link-search" href="/item/create">本を検索</Link> */}
-            <button className="link-search"　onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
-            <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => setcreateBookIsOpen(false)}>
-                <button onClick={() => setcreateBookIsOpen(false)}>close</button>
+            <button onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
+            <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => searchClose()}>
+                <button onClick={() => searchClose()}>close</button>
                 <div>
                     <h1>本の検索</h1>
                     <form onSubmit={handleSearch}>
@@ -164,6 +192,7 @@ const EditItems = (props) => {
                     </form>
                     <div>
                         {showResult && showResults()}
+                        {showResult && <button onClick={() => showNexPage()}>次の10件を取得する</button>}
                     </div>
                 </div>
             </Modal>
