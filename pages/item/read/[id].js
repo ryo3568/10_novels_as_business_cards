@@ -1,7 +1,7 @@
 import Link from "next/link" 
 import Image from "next/image"
 import Head from "next/head"
-import Header from "../../components/header"
+import Header from "../../../components/header"
 import { useEffect, useState } from "react"
 
 const ReadAllItems = (props) => {
@@ -21,7 +21,7 @@ const ReadAllItems = (props) => {
                 width: 250,
                 height: 250,
                 type: "svg",
-                data: `https://10-novels-as-business-cards.vercel.app/user/${uid}`,
+                data: `http://localhost:3000/item/user/${uid}`,
                 image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'
@@ -53,15 +53,16 @@ const ReadAllItems = (props) => {
         <div>
             <Head><title>名刺がわりの小説10選</title></Head>
             <Header/>
+            <h1></h1>
             {props.allItems.map(item => 
-                <Link href={`/item/${item._id}`} key={item._id}>
+                <div key={item._id}>
                     <Image src={item.image} width="200" height="1000" alt="item-image" />
                     <div>
                         <h2>{item.title}</h2>
                         <h3>{item.author}</h3>
                         <h4>{item.comment}</h4>
                     </div>
-                </Link>
+                </div>
             )}
             <Link href={`/item/edit/${uid}`}>編集に戻る</Link>
             <br/>
@@ -74,8 +75,9 @@ const ReadAllItems = (props) => {
 export default ReadAllItems
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
+    const response = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
     const allItems = await response.json()
+    const user = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
     return{
         props: allItems
     }

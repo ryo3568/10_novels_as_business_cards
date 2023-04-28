@@ -1,5 +1,5 @@
-import connectDB from "../../../utils/database"
-import { ItemModel, UserModel } from "../../../utils/schemaModels"
+import connectDB from "../../../../utils/database"
+import { ItemModel, UserModel } from "../../../../utils/schemaModels"
 
 const getUserItems = async(req, res) => {
     try{

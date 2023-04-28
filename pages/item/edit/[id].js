@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"
 import Header from "../../../components/header"
 
 const EditItems = (props) => {
-    const [allItems, setAllItems] = useState()
     const [uid, setUid] = useState()
 
     const router = useRouter()
@@ -14,12 +13,13 @@ const EditItems = (props) => {
     useEffect(() => {
         const userId = localStorage.getItem("uid")
         setUid(userId)
+        console.log(props.allItems)
     })
 
     const handleClick = async(e, id) => {
         e.preventDefault()
         try{
-            await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/delete/${id}`, {
+            await fetch(`http://localhost:3000/api/item/delete/${id}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -40,7 +40,7 @@ const EditItems = (props) => {
             <h1>本たちの登録</h1>
             <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
             <Link href="/item/create">本を検索</Link>
-            {props.allItems.map(item => 
+            {props.allItems && props.allItems.map(item => 
                 <div key={item._id}>
                     <Link href={`/item/${item._id}`}>
                         <Image src={item.image} width="200" height="1000" alt="item-image" />
@@ -56,7 +56,7 @@ const EditItems = (props) => {
                 </div>
             )}
             <h3>名刺の画面をプレビューで確認しよう</h3>
-            <Link href={`/user/${uid}`}>名刺を確認</Link>
+            <Link href={`/item/read/${uid}`}>名刺を確認</Link>
         </div>
     )
 }
@@ -64,7 +64,7 @@ const EditItems = (props) => {
 export default EditItems
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
+    const response = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems
