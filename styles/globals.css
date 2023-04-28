@@ -9,13 +9,31 @@ body{
 }
 
 /* ヘッダー */
+header{
+  height:200px;
+}
+
+.header-logo{
+  display:block;
+  float:left;
+}
 
 header li{
-    float:left;
+    float:right;
     list-style:none;
-    margin:20px;
-    
+    margin:80px 25px;
+    background-color:#5FC7D6;
+    text-decoration:none;
+    width:150px;
+    font-size:20px;
+    font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
+    border-radius:10px;
+    line-height: 2;
+    padding: 10px 20px;
 }
+
+
+
 /* フッター */
 .footer-logo{
   height:70px;
@@ -30,6 +48,16 @@ header li{
 }
 
 /* ランディングページ */
+ .top-wrapper{
+  height:700px;
+  background-image:url(/landing.jpg);
+  background-size:cover;
+  color:#FFF;
+  padding:100px;
+ }
+
+ 
+
  .landing-step h3 {
     position: relative;
     overflow: hidden;

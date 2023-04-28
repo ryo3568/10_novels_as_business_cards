@@ -5,7 +5,7 @@ const HeaderLogout = () => {
     return (
         <header>
             <div><Link href="/">
-                <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
+                <Image className="header-logo" src="/header-logo.png" width="482" height="150" alt="header logo"/>
             </Link></div>
             <nav>
                 <ul>
