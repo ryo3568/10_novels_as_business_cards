@@ -22,7 +22,6 @@ const ReadAllItemsPreview = (props) => {
                 height: 250,
                 type: "svg",
                 data: `http://localhost:3000/item/user/${uid}`,
-                image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'
                 },
@@ -45,7 +44,7 @@ const ReadAllItemsPreview = (props) => {
                 }
             });
             qrCode.append(document.getElementById("canvas"));
-            qrCode.download({ name: "qr", extension: "svg" });
+            qrCode.download({ name: "qr", extension: "jpg" });
         }
     }
 
