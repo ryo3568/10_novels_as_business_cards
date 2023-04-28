@@ -1,10 +1,10 @@
 import Link from "next/link" 
 import Image from "next/image"
 import Head from "next/head"
-import Header from "../../components/header"
+import Header from "../../../components/header"
 import { useEffect, useState } from "react"
 
-const ReadAllItems = (props) => {
+const ReadOnlyAllItems = (props) => {
     const [uid, setUid] = useState() 
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const ReadAllItems = (props) => {
                 width: 250,
                 height: 250,
                 type: "svg",
-                data: `http://localhost:3000/user/read/${uid}`,
+                data: `http://localhost:3000/user/${uid}`,
                 image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'
@@ -69,7 +69,7 @@ const ReadAllItems = (props) => {
     )
 }
 
-export default ReadAllItems
+export default ReadOnlyAllItems
 
 export const getServerSideProps = async(context) => {
     const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
