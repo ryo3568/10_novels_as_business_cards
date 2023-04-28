@@ -1,16 +1,14 @@
 import { useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import Link from "next/link"
-import Image from "next/image"
-import Header from "../../components/header_login"
+import Header from "../../../components/header_login"
 
-const UserRegister = () => {
-    const [name, setName] = useState("")
-    const [affiliation, setAffiliation] = useState("")
-    const [twitter, setTwitter] = useState("")
-    const [instagram, setInstagram] = useState("")
-    const [github, setGithub] = useState("")
+const UserRegister = (props) => {
+    const [name, setName] = useState(props.userInfo.name)
+    const [affiliation, setAffiliation] = useState(props.userInfo.affiliation)
+    const [twitter, setTwitter] = useState(props.userInfo.twitter)
+    const [instagram, setInstagram] = useState(props.userInfo.instagram)
+    const [github, setGithub] = useState(props.userInfo.github)
 
     const router = useRouter()
 
@@ -58,10 +56,9 @@ const UserRegister = () => {
 export default UserRegister
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/item/${context.query.id}`)
-    const singleItem = await response.json()
-
+    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
+    const userInfo = await response.json()
     return {
-        props: singleItem
+        props: userInfo
     }
 }

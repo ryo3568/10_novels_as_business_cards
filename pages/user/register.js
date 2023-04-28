@@ -1,7 +1,5 @@
 import { useState } from "react"
 import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link" 
 import { useRouter } from "next/router"
 import Header from "../../components/header_logout"
 
@@ -28,7 +26,7 @@ const Register = () => {
             const jsonData = await response.json()
             localStorage.setItem("token", jsonData.token)
             localStorage.setItem("uid", jsonData.uid)
-            router.push("/user/update")
+            router.push(`/user/update/${jsonData.uid}`)
         }catch(err){
             alert("ユーザー登録失敗")
         }
