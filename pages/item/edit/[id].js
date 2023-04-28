@@ -56,7 +56,7 @@ const EditItems = (props) => {
                 </div>
             )}
             <h3 className="h3-check">名刺の画面をプレビューで確認しよう!</h3>
-            <Link className="link-check" href={`/user/${uid}`}>名刺を確認</Link>
+            <Link className="link-check" href={`/item/preview/${uid}`}>名刺を確認</Link>
         </div>
     )
 }
