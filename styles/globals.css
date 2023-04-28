@@ -17,6 +17,17 @@ header li{
     
 }
 /* フッター */
+.footer-logo{
+  height:70px;
+  width:200px;
+  display:block;
+  float:left;
+}
+
+.copy{
+  font-size:15px;
+  padding:25px;
+}
 
 /* ランディングページ */
  .landing-step h3 {
