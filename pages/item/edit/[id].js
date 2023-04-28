@@ -34,12 +34,12 @@ const EditItems = (props) => {
     }
 
     return (
-        <div>
+        <div className="edit-id">
             <Head><title>名刺がわりの小説10選</title></Head>
             <Header/>
-            <h1>本たちの登録</h1>
-            <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
-            <Link href="/item/create">本を検索</Link>
+            <h1 >本たちの登録</h1>
+            <h3 className="h3-search">自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            <Link className="link-search" href="/item/create">本を検索</Link>
             {props.allItems.map(item => 
                 <div key={item._id}>
                     <Link href={`/item/${item._id}`}>
@@ -55,8 +55,8 @@ const EditItems = (props) => {
                     </div>
                 </div>
             )}
-            <h3>名刺の画面をプレビューで確認しよう</h3>
-            <Link href={`/user/${uid}`}>名刺を確認</Link>
+            <h3 className="h3-check">名刺の画面をプレビューで確認しよう!</h3>
+            <Link className="link-check" href={`/user/${uid}`}>名刺を確認</Link>
         </div>
     )
 }
