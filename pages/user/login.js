@@ -8,14 +8,8 @@ import Header from "../../components/header_logout"
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [uid, setUid] = useState()
 
     const router = useRouter()
-
-    useEffect(() => {
-        const userId = localStorage.getItem("uid")
-        setUid(userId)
-    })
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -34,7 +28,7 @@ const Login = () => {
             const jsonData = await response.json()
             localStorage.setItem("token", jsonData.token)
             localStorage.setItem("uid", jsonData.uid)
-            router.push(`/item/edit/${uid}`)
+            router.push(`/item/edit/${jsonData.uid}`)
         }catch(err){
             alert("ログイン失敗")
         }

@@ -66,6 +66,7 @@ export default EditItems
 export const getServerSideProps = async(context) => {
     const response = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
     const allItems = await response.json()
+    console.log(allItems)
     return{
         props: allItems
     }

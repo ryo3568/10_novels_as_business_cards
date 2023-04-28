@@ -2,6 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 
 const HeaderLogin = () => {
+    
+    const logout = () => {
+        localStorage.removeItem("uid")
+        localStorage.removeItem("token")
+    }
+    
     return (
         <header>
             <div><Link href="/">
@@ -10,7 +16,7 @@ const HeaderLogin = () => {
             <nav>
                 <ul>
                     <li><Link href="/user/update">基本情報編集</Link></li>
-                    <li><Link href="/">ログアウト</Link></li>
+                    <li><Link href="/" onClick={logout}>ログアウト</Link></li>
                 </ul>
             </nav>
         </header>
