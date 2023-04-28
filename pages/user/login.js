@@ -3,6 +3,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
 import { useRouter } from "next/router"
+import Header from "../../components/header_logout"
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -42,12 +43,7 @@ const Login = () => {
     return (
         <div>
             <Head><title>ログイン</title></Head>
-            <header>
-                <div><Link href="/">
-                    <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
-                </Link></div>
-            </header>
-            
+            <Header/>
             <h1>ログイン</h1>
             <form className="form-login" onSubmit={handleSubmit}>
                 <input className="mail" value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />

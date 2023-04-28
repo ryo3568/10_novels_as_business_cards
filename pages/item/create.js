@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import useAuth from "../../utils/useAuth"
 import { useRouter } from "next/router"
-import Header from "../../components/header"
+import Header from "../../components/header_login"
 
 const CreateItem = () => {
     const router = useRouter()

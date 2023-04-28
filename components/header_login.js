@@ -1,7 +1,7 @@
 import Link from "next/link" 
 import Image from "next/image"
 
-const Header = () => {
+const HeaderLogin = () => {
     return (
         <header>
             <div><Link href="/">
@@ -9,11 +9,12 @@ const Header = () => {
             </Link></div>
             <nav>
                 <ul>
-                    <li><Link href="/user/update">アカウントボタン</Link></li>
+                    <li><Link href="/user/update">基本情報編集</Link></li>
+                    <li><Link href="/">ログアウト</Link></li>
                 </ul>
             </nav>
         </header>
     )
 }
 
-export default Header
+export default HeaderLogin

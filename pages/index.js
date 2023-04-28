@@ -1,22 +1,13 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link" 
+import Header from "../components/header_logout"
 
 const LandingPage = () => {
   return (
     <div>
       <Head><title>名刺がわりの小説10選</title></Head>
-      <header>
-          <div className="header-logo"><Link href="/">
-            <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
-          </Link></div>
-          <nav>
-              <ul>
-                  <li><Link href="/user/register">新規登録</Link></li>
-                  <li><Link href="/user/login">ログイン</Link></li>
-              </ul>
-          </nav>
-      </header>
+      <Header />
 
       <h1>ランディングページ</h1>
       {/* 以下はTailWindCSSの適用例です。消してもかまいません */}
