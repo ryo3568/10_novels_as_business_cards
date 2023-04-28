@@ -178,7 +178,7 @@ const EditItems = (props) => {
     return (
         <div className="edit-id">
             <h1 >本たちの登録</h1>
-            <h3 className="h3-search">自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            <h3 className="h3-editid">自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
             {/* <Link className="link-search" href="/item/create">本を検索</Link> */}
             <button onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
             <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => searchClose()}>
@@ -199,14 +199,15 @@ const EditItems = (props) => {
             {props.allItems.map(item => 
                 <div key={item._id}>
                     <Link href={`/item/${item._id}`}>
-                        <Image src={item.image} width="200" height="1000" alt="item-image" />
+                        <Image src={item.image} width="150" height="200" alt="item-image" />
                     </Link>
                     <div>
-                        <h2>{item.title}</h2>
-                        <h3>{item.author}</h3>
+                        <h2 className="h2-title">『{item.title}』</h2>
+                        <h3 className="h3-author">{item.author}</h3>
                         <h4>{item.comment}</h4>
+
                         {/* <Link href={`/item/${item._id}`}>コメントを追加</Link> */}
-                        <button onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
+                        <button className="item-comment"　onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
                         <Modal isOpen={modalreadBookIsOpen} onRequestClose={() => setreadBookIsOpen(false)}>
                             {editBook &&
                             <div>
@@ -224,7 +225,7 @@ const EditItems = (props) => {
                     </div>
                 </div>
             )}
-            <h3 className="h3-check">名刺の画面をプレビューで確認しよう!</h3>
+            <h3 className="h3-editid">名刺の画面をプレビューで確認しよう!</h3>
             <Link className="link-check" href={`/item/preview/${uid}`}>名刺を確認</Link>
         </div>
     )
