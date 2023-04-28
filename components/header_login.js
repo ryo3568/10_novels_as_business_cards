@@ -1,12 +1,23 @@
 import Link from "next/link" 
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 const HeaderLogin = () => {
+
+    const router = useRouter()
     
     const logout = () => {
         localStorage.removeItem("uid")
         localStorage.removeItem("token")
+        router.push("/")
     }
+
+    const getUserInfo = () => {
+        const uid = localStorage.getItem("uid")
+        router.push(`/user/update/${uid}`)
+    }
+
+
     
     return (
         <header>
@@ -15,8 +26,8 @@ const HeaderLogin = () => {
             </Link></div>
             <nav>
                 <ul>
-                    <li><Link href="/user/update">基本情報編集</Link></li>
-                    <li><Link href="/" onClick={logout}>ログアウト</Link></li>
+                    <li onClick={getUserInfo}>基本情報編集</li>
+                    <li onClick={logout}>ログアウト</li>
                 </ul>
             </nav>
         </header>
