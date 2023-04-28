@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"
 import Header from "../../../components/header"
 
 const EditItems = (props) => {
-    const [allItems, setAllItems] = useState()
     const [uid, setUid] = useState()
 
     const router = useRouter()
@@ -14,6 +13,7 @@ const EditItems = (props) => {
     useEffect(() => {
         const userId = localStorage.getItem("uid")
         setUid(userId)
+        console.log(props.allItems)
     })
 
     const handleClick = async(e, id) => {
@@ -64,7 +64,7 @@ const EditItems = (props) => {
 export default EditItems
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
+    const response = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems
