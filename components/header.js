@@ -9,7 +9,7 @@ const Header = () => {
             </Link></div>
             <nav>
                 <ul>
-                    <li><Link href="/user/register">アカウントボタン</Link></li>
+                    <li><Link href="/user/update">アカウントボタン</Link></li>
                 </ul>
             </nav>
         </header>

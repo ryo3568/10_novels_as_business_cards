@@ -4,7 +4,7 @@ import Head from "next/head"
 import Header from "../../../components/header"
 import { useEffect, useState } from "react"
 
-const ReadAllItems = (props) => {
+const ReadAllItemsPreview = (props) => {
     const [uid, setUid] = useState() 
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const ReadAllItems = (props) => {
     )
 }
 
-export default ReadAllItems
+export default ReadAllItemsPreview
 
 export const getServerSideProps = async(context) => {
     const itemResponse = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
