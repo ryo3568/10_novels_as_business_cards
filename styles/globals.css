@@ -30,6 +30,7 @@ header li{
     border-radius:10px;
     line-height: 2;
     padding: 10px 20px;
+    color:#fff;
 }
 
 
@@ -179,9 +180,9 @@ header li{
     color:#FFF;
   }
 
-  /* 本の登録画面 */
+  /* 本の登録(編集)画面 */
   .edit-id{
-    height:600px;
+    height:100%;
   }
 
   .link-search{
@@ -189,7 +190,7 @@ header li{
     border:none;
     display:block;
     text-aligin:center;
-    width:200px;
+    width:250px;
     height:40px;
     font-size:20px;
     font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
@@ -197,8 +198,9 @@ header li{
     margin:0 auto;
     color:#FFF;
     text-decoration:none;
+    line-height: 2;
+    padding: 10px 15px;
   }
-
 
 
   .link-check{
@@ -206,7 +208,7 @@ header li{
     border:none;
     display:block;
     text-aligin:center;
-    width:200px;
+    width:250px;
     height:40px;
     font-size:20px;
     font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
@@ -214,4 +216,41 @@ header li{
     margin:0 auto;
     color:#FFF;
     text-decoration:none;
+    line-height: 2;
+    padding: 10px 15px;
   }
+
+  .h3-editid{
+    color:#808080;
+    /* text-aligin:center; */
+  }
+
+  .h2-title{
+    font-size:20px;
+  }
+
+  .h3-author{
+    font-size:18px;
+  }
+
+  .item-comment{
+    background-color:#062E94;
+    height:50px;
+    width:100px;
+    color:#FFF;
+    padding:10px;
+    border-radius:5px;
+  }
+
+
+
+
+   /* 本の検索画面 */
+
+
+  /* コメントを追加画面 */
+
+
+  /* 名刺プレビュー画面 */
+
+  /* 名刺画面 */
