@@ -104,15 +104,23 @@ const EditItems = (props) => {
             }
             else{
                 return (
-                    book.items.map(item => 
-                    <div key={item.id}>
-                        {item.volumeInfo.imageLinks && 
-                        <img src={item.volumeInfo.imageLinks.thumbnail} alt="書影"/>}
-                        <h3>『{item.volumeInfo.title.length > 5 ? item.volumeInfo.title.substring(0,5) + "..." : item.volumeInfo.title}』</h3>
-                        {item.volumeInfo.authors &&
-                        <h4>{item.volumeInfo.authors[0]}</h4>}
-                        <button onClick={(e) => handleSubmit(e, item)}>追加</button>
-                    </div>)
+                    <div className="card-group">
+                        {book.items.map(item => 
+                        <div className="card" key={item.id}>
+                            {item.volumeInfo.imageLinks ?
+                            // <img className="card-img-top" src={item.volumeInfo.imageLinks.thumbnail} alt="書影"/>
+                            <Image src={item.volumeInfo.imageLinks.thumbnail} width="128" height="190" alt="item-image" />
+                            :
+                            <Image src="/noimage.png" width="150" height="190" alt="item-image" />
+                            }
+                            <div className="card-body">
+                                <p>『{item.volumeInfo.title.length > 5 ? item.volumeInfo.title.substring(0,5) + "..." : item.volumeInfo.title}』</p>
+                                {item.volumeInfo.authors &&
+                                <p>{item.volumeInfo.authors[0]}</p>}
+                            </div>
+                            <button className="card-link" onClick={(e) => handleSubmit(e, item)}>追加</button>
+                        </div>)}
+                    </div>
                 )
             }
         }
@@ -173,6 +181,8 @@ const EditItems = (props) => {
     const searchClose = () => {
         setcreateBookIsOpen(false)
         setShowResult(false)
+        setTitle("")
+        setAuthor("")
     }
 
     return (
@@ -185,9 +195,9 @@ const EditItems = (props) => {
                 <button onClick={() => searchClose()}>close</button>
                 <div>
                     <h1>本の検索</h1>
-                    <form onSubmit={handleSearch}>
-                        <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル"  />
-                        <input value={author} onChange={(e)=>setAuthor(e.target.value)} type="text" name="author" placeholder="著者名"  />
+                    <form onSubmit={handleSearch} className="form-group">
+                        <input className="form-control" value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル"  />
+                        <input className="form-control" value={author} onChange={(e)=>setAuthor(e.target.value)} type="text" name="author" placeholder="著者名"  />
                         <button>検索</button>
                     </form>
                     <div>
@@ -210,14 +220,16 @@ const EditItems = (props) => {
                         <button className="item-comment"　onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
                         <Modal isOpen={modalreadBookIsOpen} onRequestClose={() => setreadBookIsOpen(false)}>
                             {editBook &&
-                            <div>
-                                <Image src={editBook.image} width={750} height={500} alt="item-image"/>
-                                <h1>タイトル：{editBook.title}</h1>
-                                <h1>著者：{editBook.author}</h1>
-                                <form onSubmit={handleCommentSubmit}>
-                                    <textarea value={comment} onChange={(e) => setComment(e.target.value)} name="comment" rows={10} placeholder="コメント"></textarea>
-                                    <button>確定</button>
-                                </form>
+                            <div className="card" style={{width: "30rem"}}>
+                                <Image className="card-img-top" src={editBook.image} width={250} height={380} alt="item-image"/>
+                                <dic className="card-body">
+                                    <h5 className="card-title">タイトル：{editBook.title}</h5>
+                                    <p className="card-text">著者：{editBook.author}</p>
+                                    <form onSubmit={handleCommentSubmit} className="form-group">
+                                        <textarea className="form-control" value={comment} onChange={(e) => setComment(e.target.value)} name="comment" rows={10} placeholder="コメント"></textarea>
+                                        <button className="btn btn-primary">確定</button>
+                                    </form>
+                                </dic>
                             </div>}
                         </Modal>
                         <br/>
