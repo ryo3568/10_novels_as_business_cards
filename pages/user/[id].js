@@ -21,7 +21,7 @@ const ReadAllItems = (props) => {
                 width: 250,
                 height: 250,
                 type: "svg",
-                data: `https://10-novels-as-business-cards.vercel.app/user/${uid}`,
+                data: `http://localhost:3000/user/${uid}`,
                 image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'
@@ -74,7 +74,7 @@ const ReadAllItems = (props) => {
 export default ReadAllItems
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
+    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems
