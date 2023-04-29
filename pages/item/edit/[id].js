@@ -195,6 +195,7 @@ const EditItems = (props) => {
                 <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
             </center>
             <button className="link-search" onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
+            <hr/>
             <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => searchClose()}>
                 <div className="book-search-btn">
                     <button onClick={() => searchClose()}>×</button>

@@ -16,10 +16,11 @@ header{
   float:left;
 }
 
+
 header li{
     float:right;
     list-style:none;
-    margin: 25px 25px 25px 0;
+    margin: 75px 25px 75px 0;
     background-color:#5FC7D6;
     text-decoration:none;
     width:200px;
@@ -30,7 +31,6 @@ header li{
     color:#fff;
     text-align: center;
 }
-
 
 
 /* フッター */
@@ -246,7 +246,7 @@ header li{
 
   .all-books {
     display: flex;
-    margin: 15px 0px;
+    margin: 50px 0px 25px 0px;
     justify-content: space-evenly;
   }
 
