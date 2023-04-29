@@ -16,21 +16,21 @@ header{
   float:left;
 }
 
+
 header li{
     float:right;
     list-style:none;
-    margin:80px 25px;
+    margin: 75px 25px 75px 0;
     background-color:#5FC7D6;
     text-decoration:none;
-    width:150px;
+    width:200px;
     font-size:20px;
     font-family:"UD デジタル 教科書体 NK-B","Yu Mincho、游明朝";
     border-radius:10px;
-    line-height: 2;
     padding: 10px 20px;
     color:#fff;
+    text-align: center;
 }
-
 
 
 /* フッター */
@@ -111,7 +111,7 @@ header li{
 
   /* ログインページ */
  .form-login{
-    text-aligin:center;
+    text-align:center;
  }
 
  .btn-login {
@@ -128,7 +128,7 @@ header li{
 
   /* 新規登録ページ */
  .form-register{
-    text-aligin:center;
+    text-align:center;
  }
 
  .btn-register {
@@ -187,7 +187,7 @@ header li{
     background-color:#5FC7D6;
     border:none;
     display:block;
-    text-aligin:center;
+    text-align:center;
     width:250px;
     height:40px;
     font-size:20px;
@@ -196,7 +196,7 @@ header li{
     margin:0 auto;
     color:#FFF;
     text-decoration:none;
-    line-height: 2;
+    line-height: 4px;
     padding: 10px 15px;
   }
 
@@ -205,7 +205,7 @@ header li{
     background-color:#5FC7D6;
     border:none;
     display:block;
-    text-aligin:center;
+    text-align:center;
     width:250px;
     height:40px;
     font-size:20px;
@@ -215,12 +215,13 @@ header li{
     color:#FFF;
     text-decoration:none;
     line-height: 2;
-    padding: 10px 15px;
+    /* padding: 10px 1px; */
+    line-height: 40px;
   }
 
   .h3-editid{
     color:#808080;
-    /* text-aligin:center; */
+    text-align:center;
   }
 
   .h2-title{
@@ -234,24 +235,38 @@ header li{
   .item-comment{
     background-color:#062E94;
     height:50px;
-    width:100px;
     color:#FFF;
-    padding:10px;
+    width: 80%;
     border-radius:5px;
   }
 
+  .book-search-btn {
+    text-alig: right;
+  }
+
+  .all-books {
+    display: flex;
+    margin: 50px 0px 25px 0px;
+    justify-content: space-evenly;
+  }
+
+.book-info {
+  text-align : center;
+}
 
 
 
-   /* 本の検索画面 */
+
+/* 本の検索画面 */
   
 /* コメントを追加画面 */
-/* .card { */
-  /* flex-direction: row; */
-/* } */
-/* .card img {
-  width: 30%;
-} */
+.comment-edit {
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
 
   /* 名刺プレビュー画面 */
 .name-deta h1{
