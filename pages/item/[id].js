@@ -2,6 +2,7 @@ import Image from "next/image"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Header from "../../components/header_login"
 
 const ReadSingleItem = (props) => {
     const [comment, setComment] = useState(props.singleItem.comment)
@@ -17,7 +18,7 @@ const ReadSingleItem = (props) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const response = await fetch(`http://localhost:3000/api/item/update/${props.singleItem._id}`, {
+            const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/update/${props.singleItem._id}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -40,6 +41,7 @@ const ReadSingleItem = (props) => {
     return (
         <div>
             <Head><title>{props.singleItem.title}</title></Head>
+            <Header />
             <div>
                 <Image src={props.singleItem.image} width={750} height={500} alt="item-image"/>
             </div>
@@ -59,7 +61,7 @@ const ReadSingleItem = (props) => {
 export default ReadSingleItem
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/item/${context.query.id}`)
+    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/${context.query.id}`)
     const singleItem = await response.json()
 
     return {

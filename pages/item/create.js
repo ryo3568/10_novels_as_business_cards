@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import useAuth from "../../utils/useAuth"
 import { useRouter } from "next/router"
-import Header from "../../components/header"
+import Header from "../../components/header_login"
 
 const CreateItem = () => {
     const router = useRouter()
@@ -44,7 +44,7 @@ const CreateItem = () => {
     const handleSubmit = async(e, item) => {
         e.preventDefault()
         try{
-            await fetch("http://localhost:3000/api/item/create", {
+            await fetch("https://10-novels-as-business-cards.vercel.app/api/item/create", {
                 method: "POST", 
                 headers: {
                     "Accept": "application/json",

@@ -1,22 +1,21 @@
 import { useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import Link from "next/link"
-import Image from "next/image"
+import Header from "../../../components/header_login"
 
-const UserRegister = () => {
-    const [name, setName] = useState("")
-    const [affiliation, setAffiliation] = useState("")
-    const [twitter, setTwitter] = useState("")
-    const [instagram, setInstagram] = useState("")
-    const [github, setGithub] = useState("")
+const UserRegister = (props) => {
+    const [name, setName] = useState(props.userInfo.name)
+    const [affiliation, setAffiliation] = useState(props.userInfo.affiliation)
+    const [twitter, setTwitter] = useState(props.userInfo.twitter)
+    const [instagram, setInstagram] = useState(props.userInfo.instagram)
+    const [github, setGithub] = useState(props.userInfo.github)
 
     const router = useRouter()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            await fetch("http://localhost:3000/api/user/update", {
+            await fetch("https://10-novels-as-business-cards.vercel.app/api/user/update", {
                 method: "POST",
                 headers: {
                     "Accept": "application/josn",
@@ -40,11 +39,7 @@ const UserRegister = () => {
     return (
         <div>
             <Head><title>名刺の基本情報</title></Head>
-            <header>
-                <div><Link href="/">
-                    <Image src="/header-logo.png" width="482" height="150" alt="header logo"/>
-                </Link></div>
-            </header>
+            <Header />
             <h1>名刺の基本情報</h1>
             <form className="form-update" onSubmit={handleSubmit}>
                 <label>名前<input className="upin name" value={name} onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="やな"/></label>
@@ -61,10 +56,9 @@ const UserRegister = () => {
 export default UserRegister
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/item/${context.query.id}`)
-    const singleItem = await response.json()
-
+    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
+    const userInfo = await response.json()
     return {
-        props: singleItem
+        props: userInfo
     }
 }
