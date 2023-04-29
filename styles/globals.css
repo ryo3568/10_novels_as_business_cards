@@ -220,7 +220,7 @@ header li{
 
   .h3-editid{
     color:#808080;
-    /* text-aligin:center; */
+    text-aligin:center;
   }
 
   .h2-title{
@@ -240,18 +240,24 @@ header li{
     border-radius:5px;
   }
 
+  .book-search-btn {
+    text-alig: right;
+  }
 
 
 
-   /* 本の検索画面 */
+
+
+/* 本の検索画面 */
   
 /* コメントを追加画面 */
-.card {
-  flex-direction: row;
+.comment-edit {
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
-/* .card img {
-  width: 30%;
-} */
 
   /* 名刺プレビュー画面 */
 

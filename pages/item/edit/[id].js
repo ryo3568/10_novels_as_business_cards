@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import Modal from "react-modal"
+import Header from "../../../components/header_login"
 
 const EditItems = (props) => {
     const [uid, setUid] = useState()
@@ -187,12 +188,15 @@ const EditItems = (props) => {
 
     return (
         <div className="edit-id">
-            <h1 >本たちの登録</h1>
-            <h3 className="h3-editid">自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            <Header/>
             {/* <Link className="link-search" href="/item/create">本を検索</Link> */}
-            <button onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
+            <h1 >本たちの登録</h1>
+            <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            <button className="link-search" onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
             <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => searchClose()}>
-                <button onClick={() => searchClose()}>close</button>
+                <div className="book-search-btn">
+                    <button onClick={() => searchClose()}>×</button>
+                </div>
                 <div>
                     <h1>本の検索</h1>
                     <form onSubmit={handleSearch} className="form-group">
@@ -217,16 +221,19 @@ const EditItems = (props) => {
                         <h4>{item.comment}</h4>
 
                         {/* <Link href={`/item/${item._id}`}>コメントを追加</Link> */}
-                        <button className="item-comment"　onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
+                        <button className="item-comment" onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
                         <Modal isOpen={modalreadBookIsOpen} onRequestClose={() => setreadBookIsOpen(false)}>
                             {editBook &&
-                            <div className="card" style={{width: "30rem"}}>
-                                <Image className="card-img-top" src={editBook.image} width={250} height={380} alt="item-image"/>
-                                <dic className="card-body">
-                                    <h5 className="card-title">タイトル：{editBook.title}</h5>
-                                    <p className="card-text">著者：{editBook.author}</p>
+                            <div className="comment-edit">
+                                <div className="comment-edit-left">
+                                    <Image src={editBook.image} width={250} height={350} alt="item-image"/>
+                                    <h5>タイトル：{editBook.title}</h5>
+                                    <p>著者：{editBook.author}</p>
+                                </div>
+                                <dic className="comment-edit-right">
                                     <form onSubmit={handleCommentSubmit} className="form-group">
-                                        <textarea className="form-control" value={comment} onChange={(e) => setComment(e.target.value)} name="comment" rows={10} placeholder="コメント"></textarea>
+                                        <p>コメント編集</p>
+                                        <textarea className="form-control" value={comment} onChange={(e) => setComment(e.target.value)} name="comment" rows={15} placeholder="コメント"></textarea>
                                         <button className="btn btn-primary">確定</button>
                                     </form>
                                 </dic>
