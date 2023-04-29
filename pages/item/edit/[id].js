@@ -92,6 +92,7 @@ const EditItems = (props) => {
                     comment: "",
                 })
             })
+            alert("本の登録が完了しました")
             router.push(`/item/edit/${uid}`)
         }catch(err){
             alert("アイテム作成失敗")
@@ -190,8 +191,9 @@ const EditItems = (props) => {
         <div className="edit-id">
             <Header/>
             {/* <Link className="link-search" href="/item/create">本を検索</Link> */}
-            <h1 >本たちの登録</h1>
-            <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            <center>
+                <h3>自分の名刺がわりにしたい本を10冊厳選しよう!</h3>
+            </center>
             <button className="link-search" onClick={() => setcreateBookIsOpen(true)}>本を検索</button>
             <Modal isOpen={modalcreateBookIsOpen} onRequestClose={() => searchClose()}>
                 <div className="book-search-btn">
@@ -210,18 +212,20 @@ const EditItems = (props) => {
                     </div>
                 </div>
             </Modal>
+            <div className="all-books">
             {props.allItems.map(item => 
-                <div key={item._id}>
-                    <Link href={`/item/${item._id}`}>
-                        <Image src={item.image} width="150" height="200" alt="item-image" />
-                    </Link>
+                <div key={item._id} style={{width: "10em"}}>
                     <div>
-                        <h2 className="h2-title">『{item.title}』</h2>
-                        <h3 className="h3-author">{item.author}</h3>
-                        <h4>{item.comment}</h4>
-
+                        <div className="book-info">
+                            <Image src={item.image} width="150" height="200" alt="item-image" />
+                            <button onClick={(e) => handleClick(e, item._id)}>削除</button>
+                            <br/>
+                            <button className="item-comment" onClick={(e) => setEditComment(e, item)}>コメント編集</button>
+                            <h2 className="h2-title">『{item.title.length > 5 ? item.title.substring(0,5) + "..." : item.title}』</h2>
+                            <h3 className="h3-author">{item.author.length > 7 ? item.author.substring(0, 8) + "...": item.author}</h3>
+                            <p>{item.comment}</p>
+                        </div>
                         {/* <Link href={`/item/${item._id}`}>コメントを追加</Link> */}
-                        <button className="item-comment" onClick={(e) => setEditComment(e, item)}>コメントを追加</button>
                         <Modal isOpen={modalreadBookIsOpen} onRequestClose={() => setreadBookIsOpen(false)}>
                             {editBook &&
                             <div className="comment-edit">
@@ -239,11 +243,10 @@ const EditItems = (props) => {
                                 </dic>
                             </div>}
                         </Modal>
-                        <br/>
-                        <button onClick={(e) => handleClick(e, item._id)}>削除</button>
                     </div>
                 </div>
             )}
+            </div>
             <h3 className="h3-editid">名刺の画面をプレビューで確認しよう!</h3>
             <Link className="link-check" href={`/item/preview/${uid}`}>名刺を確認</Link>
         </div>
