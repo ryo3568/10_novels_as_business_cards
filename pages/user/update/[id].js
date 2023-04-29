@@ -15,7 +15,7 @@ const UserRegister = (props) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            await fetch("http://localhost:3000/api/user/update", {
+            await fetch("https://10-novels-as-business-cards.vercel.app/api/user/update", {
                 method: "POST",
                 headers: {
                     "Accept": "application/josn",
@@ -56,7 +56,7 @@ const UserRegister = (props) => {
 export default UserRegister
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
+    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
     const userInfo = await response.json()
     return {
         props: userInfo

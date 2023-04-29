@@ -285,10 +285,25 @@ header li{
 }
 
 .preview-item{
- margin:10px;
- padding:10px;
+ width: 50%;
+  margin: 0 auto;
 }
 
+.preview-content {
+ margin:10px;
+ /* padding:10px; */
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.preview-img {
+  /* width: 50%; */
+  margin-left: 5em;
+}
+
+.preview-book {
+  /* width: 50%; */
+}
 
 
 .comment{
@@ -313,8 +328,9 @@ header li{
     margin:0 auto;
     color:#FFF;
     text-decoration:none;
-    line-height: 2;
+    /* line-height: 40px; */
     padding: 10px 15px;
+    margin-top: 5em;
 
 }
 
@@ -331,7 +347,6 @@ header li{
     margin:0 auto;
     color:#FFF;
     text-decoration:none;
-    line-height: 2;
     padding: 10px 15px;
     
 }
