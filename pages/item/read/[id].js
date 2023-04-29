@@ -1,7 +1,7 @@
 import Link from "next/link" 
 import Image from "next/image"
 import Head from "next/head"
-import Header from "../../../components/header_login"
+import Header from "../../../components/header_logout"
 import { useEffect, useState } from "react"
 
 const ReadAllItems = (props) => {
@@ -21,7 +21,7 @@ const ReadAllItems = (props) => {
                 width: 250,
                 height: 250,
                 type: "svg",
-                data: `http://localhost:3000/item/user/${uid}`,
+                data: `https://10-novels-as-business-cards.vercel.app/item/user/${uid}`,
                 image: "/vercel.svg",
                 qrOptions: {
                     errorCorrectionLevel: 'H'
@@ -60,22 +60,25 @@ const ReadAllItems = (props) => {
             <h1>Instagram：{props.userInfo.userInfo.instgram && props.userInfo.userInfo.instgram}</h1>
             <h1>GitHub：{props.userInfo.userInfo.github && props.userInfo.userInfo.github}</h1>
             </div>
-            {props.allItems.allItems.map(item => 
-                <div className="preview-container" key={item._id}>
-                    <Image src={item.image} width="150" height="200" alt="item-image" />
-                    <div className="preview-item">
-                        <h2 className="h2-title">{item.title}</h2>
-                        <h3 className="h3-author">{item.author}</h3>
-                        <div className= "comment">
-                        <h4 className="h4-comment">{item.comment}</h4>
+            <div className="preview-container">
+                {props.allItems.allItems.map(item => 
+                    <div className="preview-item" key={item._id}>
+                        <div className="preview-content"> 
+                            <div className="preview-img">
+                                <Image src={item.image} width="150" height="200" alt="item-image" />
+                            </div>
+                            <div className="preview-book">
+                                <h2 className="h2-title">『{item.title}』</h2>
+                                <h3 className="h3-author">{item.author}</h3>
+                                {item.comment && 
+                                <div className="comment">
+                                    <h4 className="h4-comment">{item.comment}</h4>
+                                </div>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-            <Link href={`/item/edit/${uid}`}>編集に戻る</Link>
-            <br/>
-            <canvas id="qrCode"></canvas>
-            <button onClick={generateQRcode}>QRコードのダウンロード</button>
+                )}
+            </div>
         </div>
     )
 }
@@ -83,9 +86,9 @@ const ReadAllItems = (props) => {
 export default ReadAllItems
 
 export const getServerSideProps = async(context) => {
-    const itemResponse = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
+    const itemResponse = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/read/${context.query.id}`)
     const allItems = await itemResponse.json()
-    const userResponse = await fetch(`http://localhost:3000/api/user/${context.query.id}`)
+    const userResponse = await fetch(`https://10-novels-as-business-cards.vercel.app/api/user/${context.query.id}`)
     const userInfo = await userResponse.json()
     const props = {
         allItems: allItems, 

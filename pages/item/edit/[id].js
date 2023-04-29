@@ -23,7 +23,7 @@ const EditItems = (props) => {
     const handleClick = async(e, id) => {
         e.preventDefault()
         try{
-            await fetch(`http://localhost:3000/api/item/delete/${id}`, {
+            await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/delete/${id}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -78,7 +78,7 @@ const EditItems = (props) => {
     const handleSubmit = async(e, item) => {
         e.preventDefault()
         try{
-            await fetch("http://localhost:3000/api/item/create", {
+            await fetch("https://10-novels-as-business-cards.vercel.app/api/item/create", {
                 method: "POST", 
                 headers: {
                     "Accept": "application/json",
@@ -131,7 +131,7 @@ const EditItems = (props) => {
     // コメント編集
     const handleCommentSubmit = async(e) => {
         try{
-            const response = await fetch(`http://localhost:3000/api/item/update/${editBook._id}`, {
+            const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/update/${editBook._id}`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -257,7 +257,7 @@ const EditItems = (props) => {
 export default EditItems
 
 export const getServerSideProps = async(context) => {
-    const response = await fetch(`http://localhost:3000/api/item/read/${context.query.id}`)
+    const response = await fetch(`https://10-novels-as-business-cards.vercel.app/api/item/read/${context.query.id}`)
     const allItems = await response.json()
     return{
         props: allItems
